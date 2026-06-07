@@ -38,28 +38,31 @@ public class CompetenciaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Competencia> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<CompetenciaDTO> buscarPorId(@PathVariable Integer id) {
         return competenciaRepository.findById(id)
-                .map(ResponseEntity::ok)
+                .map(c -> ResponseEntity.ok(new CompetenciaDTO(c)))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Competencia> criar(@RequestBody Competencia nova) {
-        if (competenciaRepository.existsByNomeIgnoreCase(nova.getNome())) {
+    public ResponseEntity<CompetenciaDTO> criar(@RequestBody CompetenciaDTO novaDto) {
+        if (competenciaRepository.existsByNomeIgnoreCase(novaDto.nome())) {
             return ResponseEntity.badRequest().build();
         }
+        Competencia nova = new Competencia();
+        nova.setNome(novaDto.nome());
+        nova.setCategoria(novaDto.categoria());
         Competencia salva = competenciaRepository.save(nova);
-        return ResponseEntity.created(URI.create("/api/competencia/" + salva.getCodigo())).body(salva);
+        return ResponseEntity.created(URI.create("/api/competencia/" + salva.getCodigo())).body(new CompetenciaDTO(salva));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Competencia> atualizar(@PathVariable Integer id, @RequestBody Competencia atualizada) {
+    public ResponseEntity<CompetenciaDTO> atualizar(@PathVariable Integer id, @RequestBody CompetenciaDTO atualizada) {
         return competenciaRepository.findById(id)
                 .map(c -> {
-                    c.setNome(atualizada.getNome());
+                    c.setNome(atualizada.nome());
                     Competencia salva = competenciaRepository.save(c);
-                    return ResponseEntity.ok(salva);
+                    return ResponseEntity.ok(new CompetenciaDTO(salva));
                 })
                 .orElse(ResponseEntity.notFound().build());
     }

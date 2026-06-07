@@ -29,7 +29,6 @@
     <properties>
         <java.version>17</java.version>
         <sonar.host.url>http://localhost:9000</sonar.host.url>
-        <sonar.token>sqa_3037f65bf97339b62c236b5889610d93d890f33b</sonar.token>
         <sonar.projectKey>br.edu.fatec:caramelstray</sonar.projectKey>
     </properties>
     <dependencies>
