@@ -40,6 +40,6 @@ public class PerfilController {
     public List<PerfilDTO> getAllPerfis() {
         return perfilRepository.findAll().stream()
                 .map(PerfilDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

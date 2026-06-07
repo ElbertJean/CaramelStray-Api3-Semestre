@@ -36,6 +36,6 @@ public class AreaController {
     public List<AreaDTO> getAllAreas() {
         return areaRepository.findAll().stream()
                 .map(AreaDTO::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

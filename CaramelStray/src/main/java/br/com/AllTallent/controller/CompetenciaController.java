@@ -33,7 +33,7 @@ public class CompetenciaController {
     public ResponseEntity<List<CompetenciaDTO>> listar() {
         List<CompetenciaDTO> dtos = competenciaRepository.findAll().stream()
                 .map(CompetenciaDTO::new) 
-                .collect(Collectors.toList());
+                .toList();
         return ResponseEntity.ok(dtos);
     }
 
