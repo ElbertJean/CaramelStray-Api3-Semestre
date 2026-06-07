@@ -30,6 +30,13 @@
         <java.version>17</java.version>
         <sonar.host.url>http://localhost:9000</sonar.host.url>
         <sonar.projectKey>br.edu.fatec:caramelstray</sonar.projectKey>
+        <sonar.coverage.exclusions>
+            **/dto/**,
+            **/model/**,
+            **/exception/**,
+            **/config/**,
+            **/*Application.*
+        </sonar.coverage.exclusions>
     </properties>
     <dependencies>
         <dependency>
