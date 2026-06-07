@@ -81,7 +81,7 @@ public class AvaliacaoController {
     
     @PostMapping("/respostas")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<?> salvarResposta( 
+    public ResponseEntity<Object> salvarResposta( 
             @Valid @RequestBody RespostaColaboradorRequestDTO respostaDTO) {
         try {
             RespostaColaboradorResponseDTO respostaSalva = avaliacaoService.salvarOuAtualizarResposta(respostaDTO);
@@ -98,7 +98,7 @@ public class AvaliacaoController {
 
     @GetMapping("/instancias/{instanciaId}/respostas")
     @PreAuthorize("hasAnyRole('ADMIN', 'GESTOR')")
-    public ResponseEntity<?> buscarRespostasPorInstancia(@PathVariable Long instanciaId) {
+    public ResponseEntity<Object> buscarRespostasPorInstancia(@PathVariable Long instanciaId) {
         try {
             List<RespostaColaboradorResponseDTO> respostas = avaliacaoService.buscarRespostasPorInstancia(instanciaId);
             return ResponseEntity.ok(respostas);
@@ -110,7 +110,7 @@ public class AvaliacaoController {
     // --- NOVO ENDPOINT PARA SUPERVISOR VISUALIZAR AVALIAÇÃO CONCLUÍDA (Task 4) ---
     @GetMapping("/revisao/{codigoAvaliacaoFuncionario}")
     @PreAuthorize("hasAnyRole('ADMIN', 'GESTOR')")
-    public ResponseEntity<?> getDadosParaRevisao(@PathVariable Long codigoAvaliacaoFuncionario) {
+    public ResponseEntity<Object> getDadosParaRevisao(@PathVariable Long codigoAvaliacaoFuncionario) {
         try {
             // Você precisará criar este método 'buscarDadosRevisao' no seu AvaliacaoService
             // Ele deve retornar um DTO com Pergunta + Resposta (semelhante ao 'responder', mas read-only)
@@ -124,7 +124,7 @@ public class AvaliacaoController {
 
     @PutMapping("/instancias/{instanciaId}/revisar") 
     @PreAuthorize("hasAnyRole('ADMIN', 'GESTOR')")
-    public ResponseEntity<?> salvarRevisaoSupervisor(
+    public ResponseEntity<Object> salvarRevisaoSupervisor(
             @PathVariable Long instanciaId,
             @Valid @RequestBody RevisaoSupervisorRequestDTO revisaoDTO) {
         try {
@@ -147,7 +147,7 @@ public class AvaliacaoController {
 
     @GetMapping("/instancias/{instanciaId}/responder")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<?> buscarAvaliacaoParaResponder(@PathVariable Long instanciaId) {
+    public ResponseEntity<Object> buscarAvaliacaoParaResponder(@PathVariable Long instanciaId) {
         try {
             AvaliacaoParaResponderDTO dto = avaliacaoService.buscarParaResponder(instanciaId);
             return ResponseEntity.ok(dto);

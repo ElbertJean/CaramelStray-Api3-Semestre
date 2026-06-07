@@ -35,7 +35,7 @@ class AvaliacaoControllerTest {
         AvaliacaoRequestDTO request = new AvaliacaoRequestDTO(null, null, null, null);
         when(avaliacaoService.criarAvaliacaoCompleta(any())).thenThrow(new RuntimeException("Simulated error"));
 
-        ResponseEntity<?> response = avaliacaoController.criarAvaliacao(request);
+        ResponseEntity<br.com.alltallent.dto.AvaliacaoResponseDTO> response = avaliacaoController.criarAvaliacao(request);
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
@@ -45,7 +45,7 @@ class AvaliacaoControllerTest {
         RespostaColaboradorRequestDTO request = new RespostaColaboradorRequestDTO(null, null, null, null);
         when(avaliacaoService.salvarOuAtualizarResposta(any())).thenThrow(new RuntimeException("Simulated error"));
 
-        ResponseEntity<?> response = avaliacaoController.salvarResposta(request);
+        ResponseEntity<Object> response = avaliacaoController.salvarResposta(request);
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertEquals("Erro interno.", response.getBody());
@@ -56,7 +56,7 @@ class AvaliacaoControllerTest {
         RevisaoSupervisorRequestDTO request = new RevisaoSupervisorRequestDTO(null, null, null);
         when(avaliacaoService.salvarRevisaoSupervisor(eq(1L), any())).thenThrow(new RuntimeException("Simulated error"));
 
-        ResponseEntity<?> response = avaliacaoController.salvarRevisaoSupervisor(1L, request);
+        ResponseEntity<Object> response = avaliacaoController.salvarRevisaoSupervisor(1L, request);
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertEquals("Erro interno ao salvar revisão.", response.getBody());

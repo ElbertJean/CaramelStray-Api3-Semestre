@@ -7,14 +7,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CustomUserDetails implements UserDetails {
 
-    private final String username; 
+    private static final String ROLE_USER = "ROLE_USER";
+
+    private final String username;
     private final String password;
-    private final Integer codigo;  
-    private final Integer areaId;  
+    private final Integer codigo;
+    private final Integer areaId;
     private final Collection<? extends GrantedAuthority> authorities;
 
     public CustomUserDetails(Funcionario funcionario) {
@@ -22,28 +23,25 @@ public class CustomUserDetails implements UserDetails {
         this.password = funcionario.getSenhaHash();
         this.codigo = funcionario.getCodigo();
         this.areaId = (funcionario.getArea() != null) ? funcionario.getArea().getCodigo() : null;
-        
+
         if (funcionario.getPerfil() == null) {
-            this.authorities = List.of(new SimpleGrantedAuthority("ROLE_USER"));
+            this.authorities = List.of(new SimpleGrantedAuthority(ROLE_USER));
         } else {
             int perfilId = funcionario.getPerfil().getCodigo();
             if (perfilId == 1) { // Diretoria
                 this.authorities = List.of(
-                    new SimpleGrantedAuthority("ROLE_ADMIN"),
-                    new SimpleGrantedAuthority("ROLE_GESTOR"),
-                    new SimpleGrantedAuthority("ROLE_USER")
-                );
+                        new SimpleGrantedAuthority("ROLE_ADMIN"),
+                        new SimpleGrantedAuthority("ROLE_GESTOR"),
+                        new SimpleGrantedAuthority(ROLE_USER));
             } else if (perfilId == 2) { // Supervisão
                 this.authorities = List.of(
-                    new SimpleGrantedAuthority("ROLE_GESTOR"),
-                    new SimpleGrantedAuthority("ROLE_USER")
-                );
+                        new SimpleGrantedAuthority("ROLE_GESTOR"),
+                        new SimpleGrantedAuthority(ROLE_USER));
             } else { // Perfil 3 (Colaborador)
-                this.authorities = List.of(new SimpleGrantedAuthority("ROLE_USER"));
+                this.authorities = List.of(new SimpleGrantedAuthority(ROLE_USER));
             }
         }
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -60,7 +58,6 @@ public class CustomUserDetails implements UserDetails {
         return this.username; // (email)
     }
 
-
     public Integer getCodigo() {
         return this.codigo;
     }
@@ -69,9 +66,23 @@ public class CustomUserDetails implements UserDetails {
         return this.areaId;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-    @Override public boolean isAccountNonExpired() { return true; }
-    @Override public boolean isAccountNonLocked() { return true; }
-    @Override public boolean isCredentialsNonExpired() { return true; }
-    @Override public boolean isEnabled() { return true; }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

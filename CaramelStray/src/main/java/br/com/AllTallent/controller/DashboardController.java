@@ -31,7 +31,7 @@ public class DashboardController {
      */
     @GetMapping
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<?> getDashboardData(
+    public ResponseEntity<Object> getDashboardData(
             @RequestParam(required = false) Integer codigoArea,
             Authentication authentication) {
 

@@ -53,7 +53,7 @@ class DashboardControllerTest {
         when(dashboardService.getDashboardData(any())).thenThrow(new RuntimeException("Simulated error"));
 
         // Act
-        ResponseEntity<?> response = dashboardController.getDashboardData(null, authentication);
+        ResponseEntity<Object> response = dashboardController.getDashboardData(null, authentication);
 
         // Assert
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
@@ -73,7 +73,7 @@ class DashboardControllerTest {
         when(dashboardService.getDashboardData(any())).thenReturn(mockData);
 
         // Act
-        ResponseEntity<?> response = dashboardController.getDashboardData(5, authentication);
+        ResponseEntity<Object> response = dashboardController.getDashboardData(5, authentication);
 
         // Assert
         assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -101,7 +101,7 @@ class DashboardControllerTest {
         when(dashboardService.getDashboardData(10)).thenReturn(mockData);
 
         // Act
-        ResponseEntity<?> response = dashboardController.getDashboardData(null, authentication);
+        ResponseEntity<Object> response = dashboardController.getDashboardData(null, authentication);
 
         // Assert
         assertEquals(HttpStatus.OK, response.getStatusCode());
