@@ -1,4 +1,4 @@
-package br.com.AllTallent.exception;
+package br.com.alltallent.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

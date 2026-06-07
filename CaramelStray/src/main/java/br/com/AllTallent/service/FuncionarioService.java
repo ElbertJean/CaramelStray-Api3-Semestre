@@ -1,4 +1,4 @@
-package br.com.AllTallent.service;
+package br.com.alltallent.service;
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,23 +10,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.AllTallent.dto.CertificadoDTO;
-import br.com.AllTallent.dto.CertificadoRequestDTO;
-import br.com.AllTallent.dto.ExperienciaDTO;
-import br.com.AllTallent.dto.ExperienciaRequestDTO;
-import br.com.AllTallent.dto.FuncionarioExperienciasResponseDTO;
-import br.com.AllTallent.dto.FuncionarioPerfilDTO;
-import br.com.AllTallent.dto.FuncionarioRequestDTO;
-import br.com.AllTallent.dto.FuncionarioResponseDTO;
-import br.com.AllTallent.exception.ResourceNotFoundException;
-import br.com.AllTallent.exception.UnauthorizedActionException;
-import br.com.AllTallent.model.*;
-import br.com.AllTallent.repository.*;
+import br.com.alltallent.dto.CertificadoDTO;
+import br.com.alltallent.dto.CertificadoRequestDTO;
+import br.com.alltallent.dto.ExperienciaDTO;
+import br.com.alltallent.dto.ExperienciaRequestDTO;
+import br.com.alltallent.dto.FuncionarioExperienciasResponseDTO;
+import br.com.alltallent.dto.FuncionarioPerfilDTO;
+import br.com.alltallent.dto.FuncionarioRequestDTO;
+import br.com.alltallent.dto.FuncionarioResponseDTO;
+import br.com.alltallent.exception.ResourceNotFoundException;
+import br.com.alltallent.exception.UnauthorizedActionException;
+import br.com.alltallent.model.*;
+import br.com.alltallent.repository.*;
 import jakarta.persistence.EntityNotFoundException;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import br.com.AllTallent.config.CustomUserDetails;
+import br.com.alltallent.config.CustomUserDetails;
 
 @Service
 public class FuncionarioService {

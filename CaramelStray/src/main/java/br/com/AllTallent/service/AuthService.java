@@ -1,12 +1,12 @@
-package br.com.AllTallent.service;
+package br.com.alltallent.service;
 
-import br.com.AllTallent.dto.CadastroRequestDTO;
-import br.com.AllTallent.model.Area;
-import br.com.AllTallent.model.Funcionario;
-import br.com.AllTallent.model.Perfil;
-import br.com.AllTallent.repository.AreaRepository;
-import br.com.AllTallent.repository.FuncionarioRepository;
-import br.com.AllTallent.repository.PerfilRepository;
+import br.com.alltallent.dto.CadastroRequestDTO;
+import br.com.alltallent.model.Area;
+import br.com.alltallent.model.Funcionario;
+import br.com.alltallent.model.Perfil;
+import br.com.alltallent.repository.AreaRepository;
+import br.com.alltallent.repository.FuncionarioRepository;
+import br.com.alltallent.repository.PerfilRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

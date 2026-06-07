@@ -1,7 +1,7 @@
-package br.com.AllTallent.dto;
+package br.com.alltallent.dto;
 
-import br.com.AllTallent.model.Pergunta;
-import br.com.AllTallent.model.RespostaColaborador; // Importar RespostaColaborador
+import br.com.alltallent.model.Pergunta;
+import br.com.alltallent.model.RespostaColaborador; // Importar RespostaColaborador
 
 import java.util.Collections;
 import java.util.List;

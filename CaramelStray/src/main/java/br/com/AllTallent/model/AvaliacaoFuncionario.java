@@ -1,4 +1,4 @@
-package br.com.AllTallent.model;
+package br.com.alltallent.model;
 
 // --- Imports Essenciais ---
 import jakarta.persistence.CascadeType;

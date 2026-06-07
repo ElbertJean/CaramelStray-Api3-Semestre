@@ -1,8 +1,8 @@
-package br.com.AllTallent.controller;
+package br.com.alltallent.controller;
 
-import br.com.AllTallent.dto.AreaDTO;
-import br.com.AllTallent.model.Area;
-import br.com.AllTallent.repository.AreaRepository;
+import br.com.alltallent.dto.AreaDTO;
+import br.com.alltallent.model.Area;
+import br.com.alltallent.repository.AreaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

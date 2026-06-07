@@ -1,6 +1,6 @@
-package br.com.AllTallent.dto;
+package br.com.alltallent.dto;
 
-import br.com.AllTallent.model.Pergunta; // Importar o modelo
+import br.com.alltallent.model.Pergunta; // Importar o modelo
 import java.util.Collections; // Para Collections.emptyList()
 import java.util.List;
 import java.util.stream.Collectors;

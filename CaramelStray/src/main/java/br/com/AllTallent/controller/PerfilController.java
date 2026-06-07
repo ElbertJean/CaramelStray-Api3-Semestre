@@ -1,4 +1,4 @@
-package br.com.AllTallent.controller;
+package br.com.alltallent.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.AllTallent.dto.PerfilDTO;
-import br.com.AllTallent.model.Perfil;
-import br.com.AllTallent.repository.PerfilRepository;
+import br.com.alltallent.dto.PerfilDTO;
+import br.com.alltallent.model.Perfil;
+import br.com.alltallent.repository.PerfilRepository;
 
 @RestController
 @RequestMapping("/api/perfil")

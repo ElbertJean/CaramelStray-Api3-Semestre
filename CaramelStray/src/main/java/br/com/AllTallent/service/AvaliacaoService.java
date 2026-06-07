@@ -1,12 +1,12 @@
-package br.com.AllTallent.service;
+package br.com.alltallent.service;
 
 import java.util.stream.Collectors;
 import java.util.List;
-import br.com.AllTallent.dto.*;
-import br.com.AllTallent.exception.ResourceNotFoundException;
-import br.com.AllTallent.exception.UnauthorizedActionException;
-import br.com.AllTallent.model.*;
-import br.com.AllTallent.repository.*;
+import br.com.alltallent.dto.*;
+import br.com.alltallent.exception.ResourceNotFoundException;
+import br.com.alltallent.exception.UnauthorizedActionException;
+import br.com.alltallent.model.*;
+import br.com.alltallent.repository.*;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +20,7 @@ import java.util.Objects;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import br.com.AllTallent.config.CustomUserDetails;
+import br.com.alltallent.config.CustomUserDetails;
 
 @Service
 public class AvaliacaoService {

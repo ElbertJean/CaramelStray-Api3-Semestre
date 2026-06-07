@@ -1,7 +1,7 @@
-package br.com.AllTallent.config;
+package br.com.alltallent.config;
 
-import br.com.AllTallent.repository.FuncionarioRepository;
-import br.com.AllTallent.model.Funcionario; 
+import br.com.alltallent.repository.FuncionarioRepository;
+import br.com.alltallent.model.Funcionario; 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,6 @@
-package br.com.AllTallent.repository;
+package br.com.alltallent.repository;
 
-import br.com.AllTallent.model.Avaliacao;
+import br.com.alltallent.model.Avaliacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

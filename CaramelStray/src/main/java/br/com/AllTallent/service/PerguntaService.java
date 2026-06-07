@@ -1,4 +1,4 @@
-package br.com.AllTallent.service; 
+package br.com.alltallent.service; 
 
 import java.util.HashSet;
 import java.util.List;
@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.AllTallent.dto.PerguntaRequestDTO;
-import br.com.AllTallent.dto.PerguntaResponseDTO;
-import br.com.AllTallent.dto.OpcaoRequest;
-import br.com.AllTallent.model.Competencia;
-import br.com.AllTallent.model.Pergunta; 
-import br.com.AllTallent.model.PerguntaOpcao;
-import br.com.AllTallent.repository.CompetenciaRepository;
-import br.com.AllTallent.repository.PerguntaRepository;
+import br.com.alltallent.dto.PerguntaRequestDTO;
+import br.com.alltallent.dto.PerguntaResponseDTO;
+import br.com.alltallent.dto.OpcaoRequest;
+import br.com.alltallent.model.Competencia;
+import br.com.alltallent.model.Pergunta; 
+import br.com.alltallent.model.PerguntaOpcao;
+import br.com.alltallent.repository.CompetenciaRepository;
+import br.com.alltallent.repository.PerguntaRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service

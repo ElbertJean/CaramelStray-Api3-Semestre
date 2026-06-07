@@ -1,6 +1,6 @@
-package br.com.AllTallent.dto;
+package br.com.alltallent.dto;
 
-import br.com.AllTallent.model.FuncionarioCertificado;
+import br.com.alltallent.model.FuncionarioCertificado;
 
 public record CertificadoDTO(Integer codigo, String nome) {
     public CertificadoDTO(FuncionarioCertificado certificado) {

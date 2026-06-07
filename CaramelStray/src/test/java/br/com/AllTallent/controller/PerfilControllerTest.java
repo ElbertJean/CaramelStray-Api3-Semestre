@@ -1,8 +1,8 @@
-package br.com.AllTallent.controller;
+package br.com.alltallent.controller;
 
-import br.com.AllTallent.dto.PerfilDTO;
-import br.com.AllTallent.model.Perfil;
-import br.com.AllTallent.repository.PerfilRepository;
+import br.com.alltallent.dto.PerfilDTO;
+import br.com.alltallent.model.Perfil;
+import br.com.alltallent.repository.PerfilRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

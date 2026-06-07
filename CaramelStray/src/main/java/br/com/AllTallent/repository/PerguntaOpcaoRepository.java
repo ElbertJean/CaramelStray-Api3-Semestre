@@ -1,6 +1,6 @@
-package br.com.AllTallent.repository;
+package br.com.alltallent.repository;
 
-import br.com.AllTallent.model.PerguntaOpcao;
+import br.com.alltallent.model.PerguntaOpcao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

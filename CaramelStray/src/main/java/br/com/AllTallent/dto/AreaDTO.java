@@ -1,6 +1,6 @@
-package br.com.AllTallent.dto;
+package br.com.alltallent.dto;
 
-import br.com.AllTallent.model.Area;
+import br.com.alltallent.model.Area;
 
 @SuppressWarnings("java:S120")
 public record AreaDTO(Integer codigo, String nome, String descricao) {

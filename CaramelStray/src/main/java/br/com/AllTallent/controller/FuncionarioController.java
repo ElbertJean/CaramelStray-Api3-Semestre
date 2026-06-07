@@ -1,4 +1,4 @@
-package br.com.AllTallent.controller;
+package br.com.alltallent.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -8,20 +8,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.AllTallent.dto.CertificadoDTO;
-import br.com.AllTallent.dto.CertificadoRequestDTO;
-import br.com.AllTallent.dto.ExperienciaDTO;
-import br.com.AllTallent.dto.ExperienciaRequestDTO;
-import br.com.AllTallent.dto.FuncionarioCompetenciaUpdateDTO;
-import br.com.AllTallent.dto.FuncionarioCompetenciasResponseDTO;
-import br.com.AllTallent.dto.FuncionarioExperienciasResponseDTO;
-import br.com.AllTallent.dto.FuncionarioPerfilDTO;
-import br.com.AllTallent.dto.FuncionarioRequestDTO;
-import br.com.AllTallent.dto.FuncionarioResponseDTO;
-import br.com.AllTallent.exception.ResourceNotFoundException;
-import br.com.AllTallent.exception.UnauthorizedActionException;
-import br.com.AllTallent.model.Funcionario;
-import br.com.AllTallent.service.FuncionarioService; 
+import br.com.alltallent.dto.CertificadoDTO;
+import br.com.alltallent.dto.CertificadoRequestDTO;
+import br.com.alltallent.dto.ExperienciaDTO;
+import br.com.alltallent.dto.ExperienciaRequestDTO;
+import br.com.alltallent.dto.FuncionarioCompetenciaUpdateDTO;
+import br.com.alltallent.dto.FuncionarioCompetenciasResponseDTO;
+import br.com.alltallent.dto.FuncionarioExperienciasResponseDTO;
+import br.com.alltallent.dto.FuncionarioPerfilDTO;
+import br.com.alltallent.dto.FuncionarioRequestDTO;
+import br.com.alltallent.dto.FuncionarioResponseDTO;
+import br.com.alltallent.exception.ResourceNotFoundException;
+import br.com.alltallent.exception.UnauthorizedActionException;
+import br.com.alltallent.model.Funcionario;
+import br.com.alltallent.service.FuncionarioService; 
 import jakarta.validation.Valid; 
 
 import org.springframework.security.access.prepost.PreAuthorize;

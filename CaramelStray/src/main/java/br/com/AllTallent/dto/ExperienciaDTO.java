@@ -1,8 +1,8 @@
 // Crie este novo arquivo em: br/com/AllTallent/dto/ExperienciaDTO.java
 
-package br.com.AllTallent.dto;
+package br.com.alltallent.dto;
 
-import br.com.AllTallent.model.Experiencia;
+import br.com.alltallent.model.Experiencia;
 import java.time.LocalDate;
 
 public record ExperienciaDTO(

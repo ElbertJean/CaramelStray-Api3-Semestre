@@ -1,4 +1,4 @@
-package br.com.AllTallent.dto;
+package br.com.alltallent.dto;
 
 import java.time.LocalDate;
 import java.util.List;

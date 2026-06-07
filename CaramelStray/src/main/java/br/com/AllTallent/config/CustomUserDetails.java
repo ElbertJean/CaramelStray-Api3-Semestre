@@ -1,6 +1,6 @@
-package br.com.AllTallent.config;
+package br.com.alltallent.config;
 
-import br.com.AllTallent.model.Funcionario;
+import br.com.alltallent.model.Funcionario;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

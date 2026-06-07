@@ -1,4 +1,4 @@
-package br.com.AllTallent.model;
+package br.com.alltallent.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.CascadeType;

@@ -1,4 +1,4 @@
-package br.com.AllTallent.controller;
+package br.com.alltallent.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
-import br.com.AllTallent.dto.PerguntaRequestDTO;
-import br.com.AllTallent.dto.PerguntaResponseDTO;
-import br.com.AllTallent.service.PerguntaService;
+import br.com.alltallent.dto.PerguntaRequestDTO;
+import br.com.alltallent.dto.PerguntaResponseDTO;
+import br.com.alltallent.service.PerguntaService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 

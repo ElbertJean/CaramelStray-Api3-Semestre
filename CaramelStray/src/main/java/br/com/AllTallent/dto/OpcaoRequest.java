@@ -1,3 +1,3 @@
-package br.com.AllTallent.dto;
+package br.com.alltallent.dto;
 
 public record OpcaoRequest(String descricao, boolean isCorreta) {}

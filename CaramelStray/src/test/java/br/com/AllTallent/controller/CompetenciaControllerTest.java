@@ -1,8 +1,8 @@
-package br.com.AllTallent.controller;
+package br.com.alltallent.controller;
 
-import br.com.AllTallent.dto.CompetenciaDTO;
-import br.com.AllTallent.model.Competencia;
-import br.com.AllTallent.repository.CompetenciaRepository;
+import br.com.alltallent.dto.CompetenciaDTO;
+import br.com.alltallent.model.Competencia;
+import br.com.alltallent.repository.CompetenciaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

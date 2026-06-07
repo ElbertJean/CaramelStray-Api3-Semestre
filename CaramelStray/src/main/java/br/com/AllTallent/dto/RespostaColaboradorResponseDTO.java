@@ -1,6 +1,6 @@
-package br.com.AllTallent.dto; 
+package br.com.alltallent.dto; 
 
-import br.com.AllTallent.model.RespostaColaborador;
+import br.com.alltallent.model.RespostaColaborador;
 
 public record RespostaColaboradorResponseDTO(
     Long codigo,

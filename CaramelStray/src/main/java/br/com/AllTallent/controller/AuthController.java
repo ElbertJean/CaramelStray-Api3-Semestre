@@ -1,11 +1,11 @@
-package br.com.AllTallent.controller;
+package br.com.alltallent.controller;
 
-import br.com.AllTallent.config.JwtService;
-import br.com.AllTallent.dto.FuncionarioResponseDTO;
-import br.com.AllTallent.dto.LoginRequestDTO;
-import br.com.AllTallent.dto.LoginResponseDTO;
-import br.com.AllTallent.model.Funcionario;
-import br.com.AllTallent.repository.FuncionarioRepository;
+import br.com.alltallent.config.JwtService;
+import br.com.alltallent.dto.FuncionarioResponseDTO;
+import br.com.alltallent.dto.LoginRequestDTO;
+import br.com.alltallent.dto.LoginResponseDTO;
+import br.com.alltallent.model.Funcionario;
+import br.com.alltallent.repository.FuncionarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,13 +14,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import br.com.AllTallent.config.CustomUserDetails;
+import br.com.alltallent.config.CustomUserDetails;
 import org.springframework.web.bind.annotation.*;
-import br.com.AllTallent.service.FuncionarioService; 
+import br.com.alltallent.service.FuncionarioService; 
 
 
-import br.com.AllTallent.dto.CadastroRequestDTO;
-import br.com.AllTallent.service.AuthService;
+import br.com.alltallent.dto.CadastroRequestDTO;
+import br.com.alltallent.service.AuthService;
 import jakarta.validation.Valid;
 import java.net.URI;
 

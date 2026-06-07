@@ -1,6 +1,6 @@
-package br.com.AllTallent.dto;
+package br.com.alltallent.dto;
 
-import br.com.AllTallent.model.Avaliacao;
+import br.com.alltallent.model.Avaliacao;
 import java.time.LocalDate;
 import java.util.Collections; 
 import java.util.List;

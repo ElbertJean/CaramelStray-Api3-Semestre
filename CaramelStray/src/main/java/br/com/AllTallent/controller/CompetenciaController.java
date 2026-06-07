@@ -1,4 +1,4 @@
-package br.com.AllTallent.controller;
+package br.com.alltallent.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.AllTallent.dto.CompetenciaDTO;
-import br.com.AllTallent.model.Competencia;
-import br.com.AllTallent.repository.CompetenciaRepository;
+import br.com.alltallent.dto.CompetenciaDTO;
+import br.com.alltallent.model.Competencia;
+import br.com.alltallent.repository.CompetenciaRepository;
 
 @RestController
 @RequestMapping("/api/competencia")

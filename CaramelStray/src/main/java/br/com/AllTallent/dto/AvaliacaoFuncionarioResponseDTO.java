@@ -1,6 +1,6 @@
-package br.com.AllTallent.dto; 
+package br.com.alltallent.dto; 
 
-import br.com.AllTallent.model.AvaliacaoFuncionario;
+import br.com.alltallent.model.AvaliacaoFuncionario;
 import lombok.Getter; 
 
 @Getter 

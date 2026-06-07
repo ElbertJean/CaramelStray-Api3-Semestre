@@ -1,24 +1,24 @@
-package br.com.AllTallent.service;
+package br.com.alltallent.service;
 
 // --- IMPORTAÇÕES ---
-import br.com.AllTallent.dto.DashboardResponseDTO;
-import br.com.AllTallent.dto.MesQuantidadeDTO;
-import br.com.AllTallent.dto.MesQuantidadeProjection; 
-import br.com.AllTallent.dto.AreaQuantidadeDTO;       
-import br.com.AllTallent.dto.CompetenciaQuantidadeDTO;
+import br.com.alltallent.dto.DashboardResponseDTO;
+import br.com.alltallent.dto.MesQuantidadeDTO;
+import br.com.alltallent.dto.MesQuantidadeProjection; 
+import br.com.alltallent.dto.AreaQuantidadeDTO;       
+import br.com.alltallent.dto.CompetenciaQuantidadeDTO;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.AllTallent.model.Avaliacao;
-import br.com.AllTallent.model.AvaliacaoFuncionario;
-import br.com.AllTallent.model.Funcionario;
-import br.com.AllTallent.model.RespostaColaborador;
-import br.com.AllTallent.repository.AvaliacaoFuncionarioRepository;
-import br.com.AllTallent.repository.AvaliacaoRepository;
-import br.com.AllTallent.repository.FuncionarioRepository;
-import br.com.AllTallent.repository.RespostaColaboradorRepository;
+import br.com.alltallent.model.Avaliacao;
+import br.com.alltallent.model.AvaliacaoFuncionario;
+import br.com.alltallent.model.Funcionario;
+import br.com.alltallent.model.RespostaColaborador;
+import br.com.alltallent.repository.AvaliacaoFuncionarioRepository;
+import br.com.alltallent.repository.AvaliacaoRepository;
+import br.com.alltallent.repository.FuncionarioRepository;
+import br.com.alltallent.repository.RespostaColaboradorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

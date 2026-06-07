@@ -1,6 +1,6 @@
-package br.com.AllTallent.dto;
+package br.com.alltallent.dto;
 
-import br.com.AllTallent.model.PerguntaOpcao; 
+import br.com.alltallent.model.PerguntaOpcao; 
 
 public record PerguntaOpcaoDTO(
     Long codigo,         

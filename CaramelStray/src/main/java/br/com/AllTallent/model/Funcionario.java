@@ -1,4 +1,4 @@
-package br.com.AllTallent.model;
+package br.com.alltallent.model;
 
 import java.time.LocalDate; // Import adicionado
 import java.time.OffsetDateTime;

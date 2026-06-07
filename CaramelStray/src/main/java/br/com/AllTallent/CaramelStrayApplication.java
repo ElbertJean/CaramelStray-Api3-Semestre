@@ -1,4 +1,4 @@
-package br.com.AllTallent;
+package br.com.alltallent;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

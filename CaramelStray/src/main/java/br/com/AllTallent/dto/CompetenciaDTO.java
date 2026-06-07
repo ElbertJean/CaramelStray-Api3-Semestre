@@ -1,6 +1,6 @@
-package br.com.AllTallent.dto;
+package br.com.alltallent.dto;
 
-import br.com.AllTallent.model.Competencia;
+import br.com.alltallent.model.Competencia;
 
 public record CompetenciaDTO(Integer id, String nome, String categoria) {
     public CompetenciaDTO(Competencia competencia) {

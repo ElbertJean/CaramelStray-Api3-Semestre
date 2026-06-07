@@ -1,4 +1,4 @@
-package br.com.AllTallent.repository;
+package br.com.alltallent.repository;
 
 import java.util.Optional;
 import java.util.List;
@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param; 
 import org.springframework.stereotype.Repository;
-import br.com.AllTallent.model.Funcionario;
-import br.com.AllTallent.dto.MesQuantidadeProjection; // Nossa interface
-import br.com.AllTallent.dto.AreaQuantidadeDTO;       // Novo do Git
-import br.com.AllTallent.dto.CompetenciaQuantidadeDTO; // Novo do Git
+import br.com.alltallent.model.Funcionario;
+import br.com.alltallent.dto.MesQuantidadeProjection; // Nossa interface
+import br.com.alltallent.dto.AreaQuantidadeDTO;       // Novo do Git
+import br.com.alltallent.dto.CompetenciaQuantidadeDTO; // Novo do Git
 
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Integer> {
@@ -43,7 +43,7 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Intege
     long countByAreaCodigo(Integer codigoArea);
     
     @Query("""
-        SELECT new br.com.AllTallent.dto.AreaQuantidadeDTO(COALESCE(a.nome, 'Sem área'), COUNT(f))
+        SELECT new br.com.alltallent.dto.AreaQuantidadeDTO(COALESCE(a.nome, 'Sem área'), COUNT(f))
         FROM Funcionario f
         LEFT JOIN f.area a
         GROUP BY a.nome
@@ -52,7 +52,7 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Intege
     List<AreaQuantidadeDTO> countFuncionariosPorArea();
 
     @Query("""
-        SELECT new br.com.AllTallent.dto.CompetenciaQuantidadeDTO(c.nome, COUNT(c))
+        SELECT new br.com.alltallent.dto.CompetenciaQuantidadeDTO(c.nome, COUNT(c))
         FROM Funcionario f
         JOIN f.competencias c
         GROUP BY c.nome

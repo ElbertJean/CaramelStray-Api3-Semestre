@@ -1,8 +1,8 @@
-package br.com.AllTallent.controller;
+package br.com.alltallent.controller;
 
-import br.com.AllTallent.dto.*; 
-import br.com.AllTallent.exception.ResourceNotFoundException; 
-import br.com.AllTallent.service.AvaliacaoService; 
+import br.com.alltallent.dto.*; 
+import br.com.alltallent.exception.ResourceNotFoundException; 
+import br.com.alltallent.service.AvaliacaoService; 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid; 
 import org.springframework.http.HttpStatus;
@@ -18,6 +18,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/avaliacoes") 
 public class AvaliacaoController {
+
+    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(AvaliacaoController.class);
 
     private final AvaliacaoService avaliacaoService; 
 
@@ -41,10 +43,9 @@ public class AvaliacaoController {
             return ResponseEntity.created(location).body(avaliacaoCriada);
 
         } catch (EntityNotFoundException e) {
-             return ResponseEntity.badRequest().body(null); 
+            return ResponseEntity.badRequest().body(null);
         } catch (Exception e) {
-            System.err.println("Erro ao criar avaliação: " + e.getMessage()); 
-            e.printStackTrace(); 
+            logger.error("Erro ao criar avaliação", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -90,9 +91,8 @@ public class AvaliacaoController {
         } catch (IllegalArgumentException e) {
              return ResponseEntity.badRequest().body("Erro ao salvar resposta: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Erro interno ao salvar resposta: " + e.getMessage());
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao salvar resposta.");
+            logger.error("Erro interno ao salvar", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno.");
         }
     }
 
@@ -133,8 +133,7 @@ public class AvaliacaoController {
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
-             System.err.println("Erro interno ao salvar revisão: " + e.getMessage());
-             e.printStackTrace();
+            logger.error("Erro interno ao salvar revisão", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno ao salvar revisão.");
         }
     }

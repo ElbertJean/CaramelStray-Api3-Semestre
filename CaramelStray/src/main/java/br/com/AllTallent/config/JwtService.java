@@ -1,4 +1,4 @@
-package br.com.AllTallent.config;
+package br.com.alltallent.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

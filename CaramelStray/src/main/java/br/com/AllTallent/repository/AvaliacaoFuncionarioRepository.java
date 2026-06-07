@@ -1,12 +1,12 @@
-package br.com.AllTallent.repository;
+package br.com.alltallent.repository;
 
 import java.util.Optional;
 import java.util.List;
-import br.com.AllTallent.dto.CompetenciaQuantidadeDTO;
+import br.com.alltallent.dto.CompetenciaQuantidadeDTO;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import br.com.AllTallent.model.AvaliacaoFuncionario;
+import br.com.alltallent.model.AvaliacaoFuncionario;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.time.LocalDate;
@@ -65,7 +65,7 @@ public interface AvaliacaoFuncionarioRepository extends JpaRepository<AvaliacaoF
     // --- NOVO (Veio do Git): Ranking Top 5 Competências ---
     // Atenção: Isso requer que a classe CompetenciaQuantidadeDTO tenha um construtor compatível
     @Query("""
-        SELECT new br.com.AllTallent.dto.CompetenciaQuantidadeDTO(c.nome, COUNT(rc))
+        SELECT new br.com.alltallent.dto.CompetenciaQuantidadeDTO(c.nome, COUNT(rc))
         FROM RespostaColaborador rc
         JOIN rc.pergunta p
         JOIN p.competencia c

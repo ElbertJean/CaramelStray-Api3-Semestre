@@ -1,4 +1,4 @@
-package br.com.AllTallent.caramelstray;
+package br.com.alltallent.caramelstray;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

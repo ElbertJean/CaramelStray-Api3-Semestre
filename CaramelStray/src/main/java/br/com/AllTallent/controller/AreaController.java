@@ -1,8 +1,8 @@
-package br.com.AllTallent.controller;
+package br.com.alltallent.controller;
 
-import br.com.AllTallent.dto.AreaDTO;
-import br.com.AllTallent.model.Area;
-import br.com.AllTallent.repository.AreaRepository;
+import br.com.alltallent.dto.AreaDTO;
+import br.com.alltallent.model.Area;
+import br.com.alltallent.repository.AreaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
