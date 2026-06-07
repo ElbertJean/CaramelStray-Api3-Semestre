@@ -59,4 +59,52 @@ class DashboardControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertEquals("Erro interno no servidor: Simulated error", response.getBody());
     }
+    @Test
+    void testGetDashboardData_Admin() {
+        // Arrange
+        CustomUserDetails userDetails = mock(CustomUserDetails.class);
+        when(userDetails.getCodigo()).thenReturn(1);
+        when(authentication.getPrincipal()).thenReturn(userDetails);
+
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_ADMIN");
+        when(authentication.getAuthorities()).thenReturn((java.util.Collection) List.of(authority));
+
+        br.com.alltallent.dto.DashboardResponseDTO mockData = br.com.alltallent.dto.DashboardResponseDTO.builder().build();
+        when(dashboardService.getDashboardData(any())).thenReturn(mockData);
+
+        // Act
+        ResponseEntity<?> response = dashboardController.getDashboardData(5, authentication);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(mockData, response.getBody());
+    }
+
+    @Test
+    void testGetDashboardData_Gestor() {
+        // Arrange
+        CustomUserDetails userDetails = mock(CustomUserDetails.class);
+        when(userDetails.getCodigo()).thenReturn(1);
+        when(authentication.getPrincipal()).thenReturn(userDetails);
+
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_GESTOR");
+        when(authentication.getAuthorities()).thenReturn((java.util.Collection) List.of(authority));
+
+        br.com.alltallent.model.Area area = new br.com.alltallent.model.Area();
+        area.setCodigo(10);
+        br.com.alltallent.model.Funcionario gestor = new br.com.alltallent.model.Funcionario();
+        gestor.setArea(area);
+        
+        when(funcionarioRepository.findById(1)).thenReturn(java.util.Optional.of(gestor));
+
+        br.com.alltallent.dto.DashboardResponseDTO mockData = br.com.alltallent.dto.DashboardResponseDTO.builder().build();
+        when(dashboardService.getDashboardData(10)).thenReturn(mockData);
+
+        // Act
+        ResponseEntity<?> response = dashboardController.getDashboardData(null, authentication);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(mockData, response.getBody());
+    }
 }
