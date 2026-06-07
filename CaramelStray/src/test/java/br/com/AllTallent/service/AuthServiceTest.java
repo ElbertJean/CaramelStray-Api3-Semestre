@@ -51,7 +51,7 @@ class AuthServiceTest {
         request.setCodigoPerfil(1);
         request.setSenha("123");
         request.setNomeCompleto("Test Name");
-        request.setDataAdmissao(LocalDate.now());
+        request.setDataAdmissao(LocalDate.of(2023, 1, 1));
 
         when(funcionarioRepository.findByEmail(any())).thenReturn(Optional.empty());
 
