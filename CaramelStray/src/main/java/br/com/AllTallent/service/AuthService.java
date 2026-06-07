@@ -28,7 +28,7 @@ public class AuthService {
         
         // 1. Validar se o email já existe
         if (funcionarioRepository.findByEmail(request.getEmail()).isPresent()) {
-            throw new RuntimeException("Erro: Email já está em uso!");
+            throw new IllegalArgumentException("Erro: Email já está em uso!");
         }
 
         // 2. Buscar relacionamentos obrigatórios

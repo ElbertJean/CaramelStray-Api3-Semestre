@@ -59,13 +59,6 @@ public class FuncionarioService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    /*
-    @Transactional(readOnly = true)
-    public List<FuncionarioResponseDTO> listarTodos() {
-        return funcionarioRepository.findAll().stream()
-                .map(FuncionarioResponseDTO::new)
-                .collect(Collectors.toList());
-    }*/
 
     @Transactional(readOnly = true)
     public List<FuncionarioResponseDTO> listarTodos(String texto) {
@@ -73,14 +66,14 @@ public class FuncionarioService {
         if (texto == null || texto.trim().isEmpty()) {
             return funcionarioRepository.findAll()
                     .stream()
-                    .map(FuncionarioResponseDTO::new)
-                    .collect(Collectors.toList());
+                    .map(br.com.alltallent.dto.FuncionarioResponseDTO::new)
+                    .toList();
         }
 
         return funcionarioRepository.buscarPorTexto(texto)
                 .stream()
-                .map(FuncionarioResponseDTO::new)
-                .collect(Collectors.toList());
+                .map(br.com.alltallent.dto.FuncionarioResponseDTO::new)
+                .toList();
     }
 
 

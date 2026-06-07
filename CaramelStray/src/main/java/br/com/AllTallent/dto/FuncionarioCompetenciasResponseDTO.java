@@ -1,6 +1,5 @@
 package br.com.alltallent.dto;
 
-//import br.com.alltallent.model.Competencia;
 import br.com.alltallent.model.Funcionario;
 import java.util.List;
 import java.util.stream.Collectors;

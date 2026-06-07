@@ -35,7 +35,7 @@ public class DashboardController {
             @RequestParam(required = false) Integer codigoArea,
             Authentication authentication) {
 
-        System.out.println(">>> 1. ENDPOINT ACIONADO - INICIANDO...");
+        logger.info(">>> 1. ENDPOINT ACIONADO - INICIANDO...");
 
         try {
             // --- LÓGICA DE PERMISSÃO ---
