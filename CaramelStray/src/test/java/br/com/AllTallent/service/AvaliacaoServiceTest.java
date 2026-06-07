@@ -52,13 +52,15 @@ class AvaliacaoServiceTest {
     @Test
     void testListarTodasAvaliacoes_Admin() {
         mockUsuarioLogado("ROLE_ADMIN");
-        avaliacaoService.listarTodasAvaliacoes();
+        List<br.com.alltallent.dto.AvaliacaoResponseDTO> result = avaliacaoService.listarTodasAvaliacoes();
+        org.junit.jupiter.api.Assertions.assertNotNull(result);
     }
 
     @Test
     void testListarTodasAvaliacoes_Gestor() {
         mockUsuarioLogado("ROLE_GESTOR");
-        avaliacaoService.listarTodasAvaliacoes();
+        List<br.com.alltallent.dto.AvaliacaoResponseDTO> result = avaliacaoService.listarTodasAvaliacoes();
+        org.junit.jupiter.api.Assertions.assertNotNull(result);
     }
 
     @Test
