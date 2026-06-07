@@ -30,7 +30,8 @@ public class Pergunta {
     private Long codigo; 
 
 
-    private String pergunta; 
+    @Column(name = "pergunta")
+    private String textoPergunta; 
 
     
     @ManyToOne(fetch = FetchType.LAZY) 
