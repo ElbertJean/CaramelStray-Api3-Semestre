@@ -30,6 +30,9 @@ class AvaliacaoServiceTest {
     @Mock
     private AvaliacaoFuncionarioRepository avaliacaoFuncionarioRepository;
 
+    @Mock
+    private br.com.alltallent.repository.RespostaColaboradorRepository respostaColaboradorRepository;
+
     @InjectMocks
     private AvaliacaoService avaliacaoService;
 
@@ -74,7 +77,8 @@ class AvaliacaoServiceTest {
     void testSalvarOuAtualizarResposta_NotFound() {
         mockUsuarioLogado("ROLE_USER");
         when(avaliacaoFuncionarioRepository.findById(anyLong())).thenReturn(Optional.empty());
-        assertThrows(EntityNotFoundException.class, () -> avaliacaoService.salvarOuAtualizarResposta(new br.com.alltallent.dto.RespostaColaboradorRequestDTO(1L, 1L, "", 1L)));
+        br.com.alltallent.dto.RespostaColaboradorRequestDTO request = new br.com.alltallent.dto.RespostaColaboradorRequestDTO(1L, 1L, "", 1L);
+        assertThrows(EntityNotFoundException.class, () -> avaliacaoService.salvarOuAtualizarResposta(request));
     }
 
     @Test
@@ -104,4 +108,30 @@ class AvaliacaoServiceTest {
         when(avaliacaoFuncionarioRepository.findById(anyLong())).thenReturn(Optional.empty());
         assertThrows(EntityNotFoundException.class, () -> avaliacaoService.buscarParaRevisao(1L));
     }
+
+    @Test
+    void testBuscarDadosRevisao_NotFound() {
+        mockUsuarioLogado("ROLE_USER");
+        when(avaliacaoFuncionarioRepository.findById(anyLong())).thenReturn(Optional.empty());
+        assertThrows(EntityNotFoundException.class, () -> avaliacaoService.buscarDadosRevisao(1L));
+    }
+
+    @Test
+    void testBuscarDadosRevisao_Success() {
+        when(avaliacaoFuncionarioRepository.existsById(1L)).thenReturn(true);
+        
+        br.com.alltallent.model.RespostaColaborador resp = new br.com.alltallent.model.RespostaColaborador();
+        br.com.alltallent.model.Pergunta p = new br.com.alltallent.model.Pergunta();
+        p.setCodigo(1L);
+        p.setTextoPergunta("Q1");
+        resp.setPergunta(p);
+        resp.setRespostaTexto("Resposta");
+        
+        when(respostaColaboradorRepository.findByAvaliacaoFuncionarioCodigo(1L)).thenReturn(List.of(resp));
+        
+        List<br.com.alltallent.dto.RevisaoDetalhadaDTO> result = avaliacaoService.buscarDadosRevisao(1L);
+        org.junit.jupiter.api.Assertions.assertEquals(1, result.size());
+        org.junit.jupiter.api.Assertions.assertEquals("Q1", result.get(0).getPerguntaTexto());
+    }
 }
+

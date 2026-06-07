@@ -75,4 +75,51 @@ class FuncionarioServiceTest {
         when(funcionarioRepository.findById(anyInt())).thenReturn(Optional.empty());
         assertThrows(ResourceNotFoundException.class, () -> funcionarioService.adicionarExperiencia(1, null));
     }
+
+    @Test
+    void testBuscarPorId_Success() {
+        br.com.alltallent.model.Funcionario f = new br.com.alltallent.model.Funcionario();
+        f.setCodigo(1);
+        br.com.alltallent.model.Perfil p = new br.com.alltallent.model.Perfil();
+        p.setNome("Admin");
+        f.setPerfil(p);
+        br.com.alltallent.model.Area a = new br.com.alltallent.model.Area();
+        a.setNome("TI");
+        f.setArea(a);
+
+        when(funcionarioRepository.findById(1)).thenReturn(Optional.of(f));
+        br.com.alltallent.dto.FuncionarioResponseDTO result = funcionarioService.buscarPorId(1);
+        org.junit.jupiter.api.Assertions.assertNotNull(result);
+        org.junit.jupiter.api.Assertions.assertEquals(1, result.codigo());
+    }
+
+    @Test
+    void testListarTodos_SemTexto() {
+        br.com.alltallent.model.Funcionario f = new br.com.alltallent.model.Funcionario();
+        br.com.alltallent.model.Perfil p = new br.com.alltallent.model.Perfil();
+        p.setNome("Admin");
+        f.setPerfil(p);
+        br.com.alltallent.model.Area a = new br.com.alltallent.model.Area();
+        a.setNome("TI");
+        f.setArea(a);
+        when(funcionarioRepository.findAll()).thenReturn(java.util.List.of(f));
+
+        java.util.List<br.com.alltallent.dto.FuncionarioResponseDTO> list = funcionarioService.listarTodos(null);
+        org.junit.jupiter.api.Assertions.assertEquals(1, list.size());
+    }
+
+    @Test
+    void testListarTodos_ComTexto() {
+        br.com.alltallent.model.Funcionario f = new br.com.alltallent.model.Funcionario();
+        br.com.alltallent.model.Perfil p = new br.com.alltallent.model.Perfil();
+        p.setNome("Admin");
+        f.setPerfil(p);
+        br.com.alltallent.model.Area a = new br.com.alltallent.model.Area();
+        a.setNome("TI");
+        f.setArea(a);
+        when(funcionarioRepository.buscarPorTexto("Maria")).thenReturn(java.util.List.of(f));
+
+        java.util.List<br.com.alltallent.dto.FuncionarioResponseDTO> list = funcionarioService.listarTodos("Maria");
+        org.junit.jupiter.api.Assertions.assertEquals(1, list.size());
+    }
 }

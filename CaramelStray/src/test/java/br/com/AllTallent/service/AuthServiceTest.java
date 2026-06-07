@@ -74,4 +74,52 @@ class AuthServiceTest {
         assertNotNull(result);
         assertNotNull(result.getDataCadastro());
     }
+
+    @Test
+    void testRegister_EmailAlreadyInUse() {
+        CadastroRequestDTO request = new CadastroRequestDTO();
+        request.setEmail("test@test.com");
+        
+        when(funcionarioRepository.findByEmail("test@test.com")).thenReturn(Optional.of(new Funcionario()));
+
+        IllegalArgumentException ex = org.junit.jupiter.api.Assertions.assertThrows(
+            IllegalArgumentException.class, 
+            () -> authService.register(request)
+        );
+        org.junit.jupiter.api.Assertions.assertEquals("Erro: Email já está em uso!", ex.getMessage());
+    }
+
+    @Test
+    void testRegister_AreaNotFound() {
+        CadastroRequestDTO request = new CadastroRequestDTO();
+        request.setEmail("new@test.com");
+        request.setCodigoArea(999);
+
+        when(funcionarioRepository.findByEmail("new@test.com")).thenReturn(Optional.empty());
+        when(areaRepository.findById(999)).thenReturn(Optional.empty());
+
+        RuntimeException ex = org.junit.jupiter.api.Assertions.assertThrows(
+            RuntimeException.class, 
+            () -> authService.register(request)
+        );
+        org.junit.jupiter.api.Assertions.assertEquals("Erro: Área (Departamento) não encontrada.", ex.getMessage());
+    }
+
+    @Test
+    void testRegister_PerfilNotFound() {
+        CadastroRequestDTO request = new CadastroRequestDTO();
+        request.setEmail("new@test.com");
+        request.setCodigoArea(1);
+        request.setCodigoPerfil(999);
+
+        when(funcionarioRepository.findByEmail("new@test.com")).thenReturn(Optional.empty());
+        when(areaRepository.findById(1)).thenReturn(Optional.of(new Area()));
+        when(perfilRepository.findById(999)).thenReturn(Optional.empty());
+
+        RuntimeException ex = org.junit.jupiter.api.Assertions.assertThrows(
+            RuntimeException.class, 
+            () -> authService.register(request)
+        );
+        org.junit.jupiter.api.Assertions.assertEquals("Erro: Perfil (Cargo) não encontrado.", ex.getMessage());
+    }
 }
