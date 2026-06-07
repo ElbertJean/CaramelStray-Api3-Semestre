@@ -56,4 +56,40 @@ class DashboardServiceTest {
         assertNotNull(result);
         assertNotNull(result.getEvolucaoMensal());
     }
+
+    @Test
+    void testGetDashboardData_ComFiltroArea() {
+        when(funcionarioRepo.countByAreaCodigo(any())).thenReturn(5L);
+        when(avaliacaoFuncionarioRepo.countTotalPendentesByArea(any())).thenReturn(2);
+        when(avaliacaoFuncionarioRepo.countConcluidasNoMesByArea(any(), any(), any())).thenReturn(5);
+        when(avaliacaoFuncionarioRepo.countAprovadasNoMesByArea(any(), any(), any())).thenReturn(4);
+        when(funcionarioRepo.findEvolucaoMensalByArea(any())).thenReturn(new ArrayList<>());
+        
+        DashboardResponseDTO result = dashboardService.getDashboardData(1);
+        assertNotNull(result);
+    }
+
+    @Test
+    void testGerarResumo() {
+        when(funcionarioRepo.findAll()).thenReturn(new ArrayList<>());
+        when(avaliacaoRepo.findAll()).thenReturn(new ArrayList<>());
+        when(avaliacaoFuncionarioRepo.findAll()).thenReturn(new ArrayList<>());
+        
+        java.util.Map<String, Object> resumo = dashboardService.gerarResumo();
+        assertNotNull(resumo);
+    }
+
+    @Test
+    void testGetDistribuicaoPorArea() {
+        when(funcionarioRepo.findAll()).thenReturn(new ArrayList<>());
+        java.util.Map<String, Long> dist = dashboardService.getDistribuicaoPorArea();
+        assertNotNull(dist);
+    }
+
+    @Test
+    void testGetDistribuicaoPorCompetencias() {
+        when(funcionarioRepo.findAll()).thenReturn(new ArrayList<>());
+        java.util.Map<String, Long> dist = dashboardService.getDistribuicaoPorCompetencias();
+        assertNotNull(dist);
+    }
 }
