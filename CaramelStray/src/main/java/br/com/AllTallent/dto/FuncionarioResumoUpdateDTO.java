@@ -1,5 +1,4 @@
 package br.com.alltallent.dto;
 
-public class FuncionarioResumoUpdateDTO {
-    
+public interface FuncionarioResumoUpdateDTO {
 }

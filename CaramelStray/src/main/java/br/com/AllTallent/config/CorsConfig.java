@@ -1,4 +1,5 @@
-/*package br.com.alltallent.config;
+package br.com.alltallent.config;
+/*
 
 
 

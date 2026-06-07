@@ -12,10 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.hibernate.Hibernate;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.HashSet;
 import java.util.Objects;
 
 import org.springframework.security.core.Authentication;
@@ -71,7 +69,7 @@ public class AvaliacaoService {
         int perfilAlvoId = avaliado.getPerfil().getCodigo();
 
         if (avaliador.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(ROLE_GESTOR)) &&
-            !avaliador.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(ROLE_ADMIN))) {
+            avaliador.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals(ROLE_ADMIN))) {
             boolean alvoEhColaborador = (perfilAlvoId == 3);
             return mesmoSetor && alvoEhColaborador;
         }
@@ -225,7 +223,7 @@ public class AvaliacaoService {
 
         // Se for Supervisor (GESTOR), verifica se ele é o criador
         if (usuarioLogado.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(ROLE_GESTOR)) &&
-            !usuarioLogado.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(ROLE_ADMIN)) &&
+            usuarioLogado.getAuthorities().stream().noneMatch(a -> a.getAuthority().equals(ROLE_ADMIN)) &&
             !Objects.equals(criadorAvaliacaoId, usuarioLogadoId)) {
             throw new UnauthorizedActionException("Permissão negada. Supervisores só podem ver avaliações que eles mesmos criaram.");
         }

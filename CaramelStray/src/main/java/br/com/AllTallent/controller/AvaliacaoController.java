@@ -86,10 +86,8 @@ public class AvaliacaoController {
         try {
             RespostaColaboradorResponseDTO respostaSalva = avaliacaoService.salvarOuAtualizarResposta(respostaDTO);
             return ResponseEntity.ok(respostaSalva); 
-        } catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException | IllegalArgumentException e) {
             return ResponseEntity.badRequest().body("Erro ao salvar resposta: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
-             return ResponseEntity.badRequest().body("Erro ao salvar resposta: " + e.getMessage());
         } catch (Exception e) {
             logger.error("Erro interno ao salvar", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno.");

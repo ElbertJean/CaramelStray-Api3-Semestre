@@ -1,12 +1,8 @@
 package br.com.alltallent.config;
 
-import br.com.alltallent.model.Area;
 import br.com.alltallent.model.Funcionario;
 import br.com.alltallent.model.Perfil;
 import org.junit.jupiter.api.Test;
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

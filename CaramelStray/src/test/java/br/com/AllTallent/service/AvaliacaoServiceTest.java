@@ -33,6 +33,15 @@ class AvaliacaoServiceTest {
     @Mock
     private br.com.alltallent.repository.RespostaColaboradorRepository respostaColaboradorRepository;
 
+    @Mock
+    private br.com.alltallent.repository.FuncionarioRepository funcionarioRepository;
+
+    @Mock
+    private br.com.alltallent.repository.PerguntaRepository perguntaRepository;
+
+    @Mock
+    private br.com.alltallent.repository.PerguntaOpcaoRepository perguntaOpcaoRepository;
+
     @InjectMocks
     private AvaliacaoService avaliacaoService;
 
@@ -41,7 +50,7 @@ class AvaliacaoServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    private void mockUsuarioLogado(String role) {
+    private CustomUserDetails mockUsuarioLogado(String role) {
         Authentication auth = mock(Authentication.class);
         CustomUserDetails userDetails = mock(CustomUserDetails.class);
         org.mockito.Mockito.doReturn(List.of(new SimpleGrantedAuthority(role))).when(userDetails).getAuthorities();
@@ -50,6 +59,7 @@ class AvaliacaoServiceTest {
         SecurityContext context = mock(SecurityContext.class);
         when(context.getAuthentication()).thenReturn(auth);
         SecurityContextHolder.setContext(context);
+        return userDetails;
     }
 
     @Test
@@ -133,5 +143,111 @@ class AvaliacaoServiceTest {
         org.junit.jupiter.api.Assertions.assertEquals(1, result.size());
         org.junit.jupiter.api.Assertions.assertEquals("Q1", result.get(0).getPerguntaTexto());
     }
-}
 
+    @Test
+    void testBuscarPendentesPorFuncionario() {
+        br.com.alltallent.model.AvaliacaoFuncionario af = new br.com.alltallent.model.AvaliacaoFuncionario();
+        af.setResultadoStatus("PENDENTE");
+        when(avaliacaoFuncionarioRepository.findByFuncionarioCodigo(1)).thenReturn(List.of(af));
+        List<br.com.alltallent.dto.AvaliacaoFuncionarioResponseDTO> result = avaliacaoService.buscarPendentesPorFuncionario(1);
+        org.junit.jupiter.api.Assertions.assertEquals(1, result.size());
+    }
+
+    @Test
+    void testFinalizarPeloColaborador_Success() {
+        CustomUserDetails user = mockUsuarioLogado("ROLE_USER");
+        when(user.getCodigo()).thenReturn(1);
+        
+        br.com.alltallent.model.AvaliacaoFuncionario af = new br.com.alltallent.model.AvaliacaoFuncionario();
+        af.setResultadoStatus("PENDENTE");
+        br.com.alltallent.model.Funcionario f = new br.com.alltallent.model.Funcionario();
+        f.setCodigo(1);
+        af.setFuncionario(f);
+        
+        when(avaliacaoFuncionarioRepository.findById(1L)).thenReturn(Optional.of(af));
+        
+        avaliacaoService.finalizarPeloColaborador(1L);
+        org.junit.jupiter.api.Assertions.assertEquals("AGUARDANDO_REVISAO", af.getResultadoStatus());
+    }
+
+    @Test
+    void testBuscarParaResponder_Success() {
+        CustomUserDetails user = mockUsuarioLogado("ROLE_USER");
+        when(user.getCodigo()).thenReturn(1);
+        
+        br.com.alltallent.model.AvaliacaoFuncionario af = new br.com.alltallent.model.AvaliacaoFuncionario();
+        br.com.alltallent.model.Funcionario f = new br.com.alltallent.model.Funcionario();
+        f.setCodigo(1);
+        af.setFuncionario(f);
+        
+        br.com.alltallent.model.Avaliacao a = new br.com.alltallent.model.Avaliacao();
+        a.setCodigo(1);
+        a.setPerguntas(java.util.Collections.emptySet());
+        af.setAvaliacao(a);
+        
+        when(avaliacaoFuncionarioRepository.findById(1L)).thenReturn(Optional.of(af));
+        
+        br.com.alltallent.dto.AvaliacaoParaResponderDTO dto = avaliacaoService.buscarParaResponder(1L);
+        org.junit.jupiter.api.Assertions.assertNotNull(dto);
+    }
+
+    @Test
+    void testListarTodasAvaliacoes_Admin_Success() {
+        CustomUserDetails user = mockUsuarioLogado("ROLE_ADMIN");
+        when(user.getAreaId()).thenReturn(10);
+        
+        br.com.alltallent.model.Avaliacao a = new br.com.alltallent.model.Avaliacao();
+        a.setCodigo(1);
+        br.com.alltallent.model.Funcionario criador = new br.com.alltallent.model.Funcionario();
+        br.com.alltallent.model.Area area = new br.com.alltallent.model.Area();
+        area.setCodigo(10);
+        criador.setArea(area);
+        a.setCriador(criador);
+        
+        when(avaliacaoRepository.findAll()).thenReturn(List.of(a));
+        
+        List<br.com.alltallent.dto.AvaliacaoResponseDTO> result = avaliacaoService.listarTodasAvaliacoes();
+        org.junit.jupiter.api.Assertions.assertEquals(1, result.size());
+    }
+
+    @Test
+    void testListarTodasAvaliacoes_Gestor_Success() {
+        CustomUserDetails user = mockUsuarioLogado("ROLE_GESTOR");
+        when(user.getAreaId()).thenReturn(10);
+        when(user.getCodigo()).thenReturn(100);
+        
+        br.com.alltallent.model.Avaliacao a = new br.com.alltallent.model.Avaliacao();
+        a.setCodigo(1);
+        br.com.alltallent.model.Funcionario criador = new br.com.alltallent.model.Funcionario();
+        br.com.alltallent.model.Area area = new br.com.alltallent.model.Area();
+        area.setCodigo(10);
+        criador.setArea(area);
+        criador.setCodigo(100);
+        a.setCriador(criador);
+        
+        when(avaliacaoRepository.findAll()).thenReturn(List.of(a));
+        
+        List<br.com.alltallent.dto.AvaliacaoResponseDTO> result = avaliacaoService.listarTodasAvaliacoes();
+        org.junit.jupiter.api.Assertions.assertEquals(1, result.size());
+    }
+
+    @Test
+    void testBuscarAvaliacaoDetalhada_Success() {
+        CustomUserDetails user = mockUsuarioLogado("ROLE_ADMIN");
+        when(user.getAreaId()).thenReturn(10);
+        
+        br.com.alltallent.model.Avaliacao a = new br.com.alltallent.model.Avaliacao();
+        a.setCodigo(1);
+        a.setPerguntas(java.util.Collections.emptySet());
+        br.com.alltallent.model.Funcionario criador = new br.com.alltallent.model.Funcionario();
+        br.com.alltallent.model.Area area = new br.com.alltallent.model.Area();
+        area.setCodigo(10);
+        criador.setArea(area);
+        a.setCriador(criador);
+        
+        when(avaliacaoRepository.findById(1)).thenReturn(Optional.of(a));
+        
+        br.com.alltallent.dto.AvaliacaoDetalhadaDTO dto = avaliacaoService.buscarAvaliacaoDetalhada(1);
+        org.junit.jupiter.api.Assertions.assertNotNull(dto);
+    }
+}
