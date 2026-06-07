@@ -59,7 +59,7 @@ public class AuthService {
         novoFuncionario.setDataAdmissao(request.getDataAdmissao());
         
         // --- DATA DE CADASTRO AUTOMÁTICA ---
-        novoFuncionario.setDataCadastro(OffsetDateTime.now()); 
+        novoFuncionario.setDataCadastro(OffsetDateTime.now(java.time.ZoneId.systemDefault())); 
 
         // Lógica do Gestor (Opcional)
         if (request.getCodigoGestor() != null) {

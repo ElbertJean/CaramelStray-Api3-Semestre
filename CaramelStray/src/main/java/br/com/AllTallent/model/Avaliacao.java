@@ -78,7 +78,7 @@ public class Avaliacao {
     // --- Métodos ---
     @PrePersist
     protected void onCreate() {
-        this.dataCriacao = LocalDate.now();
+        this.dataCriacao = LocalDate.now(java.time.ZoneId.systemDefault());
         if (this.status == null || this.status.trim().isEmpty()) {
             this.status = "Rascunho";
         }

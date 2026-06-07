@@ -3,8 +3,8 @@ package br.com.alltallent.service;
 // --- IMPORTAÇÕES ---
 import br.com.alltallent.dto.DashboardResponseDTO;
 import br.com.alltallent.dto.MesQuantidadeDTO;
-import br.com.alltallent.dto.MesQuantidadeProjection; 
-import br.com.alltallent.dto.AreaQuantidadeDTO;       
+import br.com.alltallent.dto.MesQuantidadeProjection;
+import br.com.alltallent.dto.AreaQuantidadeDTO;
 import br.com.alltallent.dto.CompetenciaQuantidadeDTO;
 
 import java.time.LocalDate;
@@ -20,33 +20,26 @@ import br.com.alltallent.repository.AvaliacaoRepository;
 import br.com.alltallent.repository.FuncionarioRepository;
 import br.com.alltallent.repository.RespostaColaboradorRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.transaction.annotation.Transactional;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Service
+@lombok.RequiredArgsConstructor
 public class DashboardService {
-    
-    @Autowired
-    private FuncionarioRepository funcionarioRepo;
 
-    @Autowired
-    private AvaliacaoRepository avaliacaoRepo;
-
-    @Autowired
-    private AvaliacaoFuncionarioRepository avaliacaoFuncionarioRepo;
-
-    @Autowired
-    private RespostaColaboradorRepository respostaColaboradorRepo;
+    private final FuncionarioRepository funcionarioRepo;
+    private final AvaliacaoRepository avaliacaoRepo;
+    private final AvaliacaoFuncionarioRepository avaliacaoFuncionarioRepo;
+    private final RespostaColaboradorRepository respostaColaboradorRepo;
 
     // --- MÉTODOS AUXILIARES NOVOS (Vieram do Git) ---
     public List<AreaQuantidadeDTO> getTotalColaboradoresArea() {
         return funcionarioRepo.countFuncionariosPorArea();
     }
-    
+
     public List<CompetenciaQuantidadeDTO> getTotalColaboradoresCompetencia() {
         return funcionarioRepo.countFuncionariosPorCompetencia();
     }
@@ -61,7 +54,7 @@ public class DashboardService {
     public DashboardResponseDTO getDashboardData(Integer codigoAreaFiltro) {
 
         // --- Cálculos de Data ---
-        LocalDate hoje = LocalDate.now();
+        LocalDate hoje = LocalDate.now(java.time.ZoneId.systemDefault());
         LocalDate inicioMes = hoje.withDayOfMonth(1);
         LocalDate fimMes = hoje.withDayOfMonth(hoje.lengthOfMonth());
 
@@ -69,7 +62,7 @@ public class DashboardService {
         Integer totalPendencias;
         Integer concluidosMes;
         Integer aprovadosMes;
-        
+
         List<MesQuantidadeProjection> evolucaoProj;
 
         // --- Lógica do Filtro de Área ---
@@ -89,8 +82,8 @@ public class DashboardService {
 
         // --- Conversão de Projeção para DTO ---
         List<MesQuantidadeDTO> evolucao = evolucaoProj.stream()
-            .map(p -> new MesQuantidadeDTO(p.getMes(), p.getQuantidade()))
-            .collect(Collectors.toList());
+                .map(p -> new MesQuantidadeDTO(p.getMes(), p.getQuantidade()))
+                .collect(Collectors.toList());
 
         // --- Cálculo da Meta ---
         Double metaMensal = 0.0;
@@ -118,7 +111,7 @@ public class DashboardService {
         List<Funcionario> funcionarios = funcionarioRepo.findAll();
         List<Avaliacao> instancias = avaliacaoRepo.findAll();
         List<AvaliacaoFuncionario> instanciasFuncionarios = avaliacaoFuncionarioRepo.findAll();
-        
+
         long totalColaboradores = funcionarios.size();
         long avaliacoesConcluidas = instancias.stream()
                 .filter(i -> "CONCLUIDO".equalsIgnoreCase(i.getStatus()))
@@ -126,7 +119,7 @@ public class DashboardService {
         long avaliacoesPendentes = instancias.stream()
                 .filter(i -> "PENDENTE".equalsIgnoreCase(i.getStatus()))
                 .count();
-        
+
         List<String> colaboradoresPendentes = instanciasFuncionarios.stream()
                 .filter(i -> "PENDENTE".equalsIgnoreCase(i.getResultadoStatus()))
                 .map(i -> i.getFuncionario().getNomeCompleto())
@@ -158,8 +151,7 @@ public class DashboardService {
                 .collect(Collectors.groupingBy(
                         f -> (f.getArea() == null) ? "Sem área" : f.getArea().getNome(),
                         LinkedHashMap::new,
-                        Collectors.counting()
-                ));
+                        Collectors.counting()));
     }
 
     public Map<String, Long> getDistribuicaoPorCompetencias() {
@@ -168,7 +160,6 @@ public class DashboardService {
                 .collect(Collectors.groupingBy(
                         comp -> (comp.getNome() == null || comp.getNome().isBlank()) ? "Sem nome" : comp.getNome(),
                         LinkedHashMap::new,
-                        Collectors.counting()
-                ));
+                        Collectors.counting()));
     }
 }
