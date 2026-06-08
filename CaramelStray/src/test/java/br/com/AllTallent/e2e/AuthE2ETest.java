@@ -1,4 +1,4 @@
-﻿package br.com.alltallent.e2e;
+package br.com.alltallent.e2e;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
