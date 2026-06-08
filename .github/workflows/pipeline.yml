@@ -77,19 +77,27 @@ jobs:
           name: target-folder
           path: CaramelStray/target/
 
-      - name: Debug Token Value (Spaced)
+      - name: Debug Sonar Configuration
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          echo "Token com espacos:"
+          echo "=== 1. Token (com espacos) ==="
           echo "$SONAR_TOKEN" | sed 's/./& /g'
+          echo "=== 2. Organizacao ==="
+          echo "elbertjean"
+          echo "=== 3. Project Key ==="
+          echo "br.edu.fatec:caramelstray"
+          echo "=== 4. Versao do Plugin Maven ==="
+          echo "5.7.0.6970"
+          echo "=== 5. Conteudo do pom.xml ==="
+          cat pom.xml
 
 
       - name: SonarCloud Scan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.7.0.6970:sonar -Dsonar.projectKey=br.edu.fatec:caramelstray -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=elbertjean
+        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.7.0.6970:sonar -Dsonar.projectKey=br.edu.fatec:caramelstray -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=elbertjean -Dsonar.token=${{ secrets.SONAR_TOKEN }}
 
   system-test:
     name: System Test (E2E)
