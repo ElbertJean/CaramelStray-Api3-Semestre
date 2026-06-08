@@ -35,7 +35,7 @@ public abstract class BaseE2ETest {
         jdbcTemplate.execute(
                 "INSERT INTO tb_cad_perfil(codigo, nome, descricao) VALUES (3, 'Colaborador', 'ROLE_COLAB') ON CONFLICT (codigo) DO NOTHING;");
         jdbcTemplate.execute(
-                "INSERT INTO tb_cad_competencia(codigo, nome, categoria) VALUES (1, 'Comp E2E', 'Técnica') ON CONFLICT (codigo) DO NOTHING;");
+                "INSERT INTO tb_cad_competencia(codigo, nome, categoria) VALUES (1, 'Comp E2E', 'Tecnica') ON CONFLICT (codigo) DO NOTHING;");
     }
 
     protected String getAdminToken() {

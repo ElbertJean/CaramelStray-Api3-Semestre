@@ -1,4 +1,4 @@
-package br.com.alltallent.e2e;
+﻿package br.com.alltallent.e2e;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ class CompetenciaE2ETest extends BaseE2ETest {
             .body("""
                 {
                   "nome": "%s",
-                  "categoria": "TÃ©cnica"
+                  "categoria": "TÃƒÂ©cnica"
                 }
                 """.formatted(compName))
             .when()
@@ -65,7 +65,7 @@ class CompetenciaE2ETest extends BaseE2ETest {
             .body("""
                 {
                   "nome": "%s",
-                  "categoria": "TÃ©cnica"
+                  "categoria": "TÃƒÂ©cnica"
                 }
                 """.formatted(compName))
             .when()
@@ -80,7 +80,7 @@ class CompetenciaE2ETest extends BaseE2ETest {
             .body("""
                 {
                   "nome": "%s",
-                  "categoria": "TÃ©cnica"
+                  "categoria": "TÃƒÂ©cnica"
                 }
                 """.formatted(compName))
             .when()
@@ -89,4 +89,5 @@ class CompetenciaE2ETest extends BaseE2ETest {
             .statusCode(400);
     }
 }
+
 
