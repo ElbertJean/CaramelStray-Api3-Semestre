@@ -77,11 +77,22 @@ jobs:
           name: target-folder
           path: CaramelStray/target/
 
+      - name: Debug Token Presence
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          if [ -z "$SONAR_TOKEN" ]; then
+            echo "ERRO: SONAR_TOKEN está vazio!"
+          else
+            echo "SONAR_TOKEN está configurado. Tamanho: ${#SONAR_TOKEN} caracteres."
+          fi
+
+
       - name: SonarCloud Scan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.7.0.6970:sonar -Dsonar.projectKey=br.edu.fatec:caramelstray -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=elbertjean -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+        run: mvn org.sonarsource.scanner.maven:sonar-maven-plugin:5.7.0.6970:sonar -Dsonar.projectKey=br.edu.fatec:caramelstray -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=elbertjean
 
   system-test:
     name: System Test (E2E)
