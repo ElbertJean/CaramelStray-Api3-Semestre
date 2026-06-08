@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "codigo": { "type": "integer" },
+      "nomeCompleto": { "type": "string" },
+      "email": { "type": "string" }
+    },
+    "required": [
+      "codigo",
+      "nomeCompleto",
+      "email"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "codigo": { "type": "integer" },
+    "nomeCompleto": { "type": "string" },
+    "email": { "type": "string" },
+    "cpf": { "type": "string" },
+    "telefone": { "type": "string" },
+    "codigoArea": { "type": "integer" },
+    "codigoPerfil": { "type": "integer" },
+    "urlFoto": { "type": ["string", "null"] },
+    "nomePerfil": { "type": ["string", "null"] },
+    "nomeArea": { "type": ["string", "null"] },
+    "resumo": { "type": ["string", "null"] }
+  },
+  "required": [
+    "codigo",
+    "nomeCompleto",
+    "email"
+  ]
+}
