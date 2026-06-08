@@ -20,7 +20,7 @@ class CompetenciaE2ETest extends BaseE2ETest {
             .body("""
                 {
                   "nome": "%s",
-                  "categoria": "TÃƒÂ©cnica"
+                  "categoria": "Tecnica"
                 }
                 """.formatted(compName))
             .when()
@@ -65,7 +65,7 @@ class CompetenciaE2ETest extends BaseE2ETest {
             .body("""
                 {
                   "nome": "%s",
-                  "categoria": "TÃƒÂ©cnica"
+                  "categoria": "Tecnica"
                 }
                 """.formatted(compName))
             .when()
@@ -80,7 +80,7 @@ class CompetenciaE2ETest extends BaseE2ETest {
             .body("""
                 {
                   "nome": "%s",
-                  "categoria": "TÃƒÂ©cnica"
+                  "categoria": "Tecnica"
                 }
                 """.formatted(compName))
             .when()

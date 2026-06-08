@@ -16,6 +16,8 @@ jobs:
   unit-test:
     name: Unit Test
     runs-on: ubuntu-latest
+    env:
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
     services:
       postgres:
         image: postgres:15
@@ -83,6 +85,8 @@ jobs:
   system-test:
     name: System Test (E2E)
     runs-on: ubuntu-latest
+    env:
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
     services:
       postgres:
         image: postgres:15
