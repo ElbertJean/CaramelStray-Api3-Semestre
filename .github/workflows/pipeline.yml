@@ -53,6 +53,7 @@ jobs:
           path: CaramelStray/target/
           retention-days: 1
 
+# teste CI
   static-analysis:
     name: Static Analysis
     runs-on: ubuntu-latest
