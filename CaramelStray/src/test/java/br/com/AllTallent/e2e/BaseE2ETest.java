@@ -36,6 +36,14 @@ public abstract class BaseE2ETest {
                 "INSERT INTO tb_cad_perfil(codigo, nome, descricao) VALUES (3, 'Colaborador', 'ROLE_COLAB') ON CONFLICT (codigo) DO NOTHING;");
         jdbcTemplate.execute(
                 "INSERT INTO tb_cad_competencia(codigo, nome, categoria) VALUES (1, 'Comp E2E', 'Tecnica') ON CONFLICT (codigo) DO NOTHING;");
+        
+        // Reset sequences to prevent duplicate key errors on generated IDs
+        jdbcTemplate.execute(
+                "SELECT setval(pg_get_serial_sequence('tb_cad_competencia', 'codigo'), COALESCE(MAX(codigo), 1)) FROM tb_cad_competencia;");
+        jdbcTemplate.execute(
+                "SELECT setval(pg_get_serial_sequence('tb_cad_area', 'codigo'), COALESCE(MAX(codigo), 1)) FROM tb_cad_area;");
+        jdbcTemplate.execute(
+                "SELECT setval(pg_get_serial_sequence('tb_cad_perfil', 'codigo'), COALESCE(MAX(codigo), 1)) FROM tb_cad_perfil;");
     }
 
     protected String getAdminToken() {
